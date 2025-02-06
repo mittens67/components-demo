@@ -21,3 +21,7 @@ The following is implemented:
 ## For Login, please use:
 email : test@example.com
 password : password123
+
+
+## Deployed site at:
+https://component-demo.netlify.app 
