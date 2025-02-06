@@ -6,15 +6,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import store from "./store/store";
 import App from "./App";
 
-// Define a custom theme (optional)
+
 const theme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#000000", // Blue
+      main: "#000000", 
     },
     secondary: {
-      main: "#FF6F61", // Red
+      main: "#FF6F61", 
     },
   },
 });

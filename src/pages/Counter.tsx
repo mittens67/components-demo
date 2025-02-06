@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement, reset } from "../store/slices/counterSlice";
 
 function Counter() {
-  const count = useSelector((state: any) => state.counter.count); // Ensure the correct state path
+  const count = useSelector((state: any) => state.counter.count); 
   const dispatch = useDispatch();
 
   return (
@@ -28,7 +28,7 @@ function Counter() {
         <Button 
           variant="contained" 
           color="primary" 
-          onClick={() => dispatch(increment())} // Ensure dispatch works
+          onClick={() => dispatch(increment())} 
           sx={{ padding: "12px 20px", borderRadius: "50%" }}
         >
           +

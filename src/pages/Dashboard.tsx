@@ -27,7 +27,7 @@ const Dashboard = () => {
           </Card>
         </Grid>
 
-        {/* Counter Visualization Card */}
+        
         <Grid item xs={12} sm={6}>
           <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
             <CardContent>

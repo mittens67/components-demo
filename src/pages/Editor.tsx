@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import "react-quill/dist/quill.snow.css"; 
 import { Box, Button, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { updateContent } from "../store/slices/editorSlice";
@@ -18,6 +18,7 @@ const modules = {
 
 function Editor() {
   const [content, setContent] = useState("");
+  const [isDirty, setIsDirty] = useState(false);
   const dispatch = useDispatch();
 
   // Load any saved content from local storage on component mount
@@ -36,7 +37,26 @@ function Editor() {
     // Save content to the Redux store (RTK)
     dispatch(updateContent(content));
     alert("Content saved!");
+    setIsDirty(false);
   };
+
+  const handleChange = (value: string) => {
+    setContent(value);
+    setIsDirty(true);
+  };
+
+  // Warn the user before closing the tab if there are unsaved changes
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [isDirty]);
 
   return (
     <Box
@@ -55,7 +75,7 @@ function Editor() {
       </Typography>
       <ReactQuill
         value={content}
-        onChange={setContent}
+        onChange={handleChange}
         theme="snow"
         modules={modules}
         style={{ height: "300px", marginBottom: "20px" }}

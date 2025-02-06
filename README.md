@@ -2,18 +2,20 @@
 
 
 This demo has the following features.
-- Counter that changes background color
+- A counter that changes background color
 - A form component 
 - A rich text editor 
 - A dashboard
 - A login with mock validation
 
 
-The following is implement:
+The following is implemented:
 - routing with React Router
-- state management with Redux RTK + local storage for form and rich text
+- state management with Redux + local storage for form and rich text,
+  local storage for data persistance on reloads for forms and rich text editor.
+  Redux for centralized state management.
 - background color change made smooth with the help of React Spring
-- MUI 
+- Material UI
 
 
 ## For Login, please use:

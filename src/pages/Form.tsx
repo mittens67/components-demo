@@ -1,4 +1,4 @@
-import { TextField, Button, Box, Typography, Paper } from "@mui/material";
+import { TextField, Button, Box, Typography, Paper,Snackbar, Alert } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/slices/userSlice";
@@ -12,6 +12,7 @@ function Form() {
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isDirty, setIsDirty] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +65,8 @@ function Form() {
     setFormData({ name: "", address: "", email: "", phone: "" });
     setErrors({});
     setIsDirty(false);
+
+    setOpenSnackbar(true);
   };
 
   // Warn the user of unsaved changes if they try to close the browser
@@ -146,6 +149,12 @@ function Form() {
           Save
         </Button>
       </Box>
+      {/* Success Snackbar */}
+      <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+        <Alert onClose={() => setOpenSnackbar(false)} severity="success" sx={{ width: "100%" }}>
+          User successfully saved!
+        </Alert>
+      </Snackbar>
     </Paper>
   );
 }
